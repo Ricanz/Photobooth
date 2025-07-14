@@ -4,7 +4,7 @@
         <!--begin::Page title-->
         <div class="page-title d-flex flex-column me-3">
             <!--begin::Title-->
-            <h1 class="d-flex text-dark fw-bolder my-1 fs-3">Package List</h1>
+            <h1 class="d-flex text-dark fw-bolder my-1 fs-3">Frame List</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-dot fw-bold text-gray-600 fs-7 my-1">
@@ -14,10 +14,10 @@
                 </li>
                 <!--end::Item-->
                 <!--begin::Item-->
-                <li class="breadcrumb-item text-gray-600">Package Management</li>
+                <li class="breadcrumb-item text-gray-600">Frame Management</li>
                 <!--end::Item-->
                 <!--begin::Item-->
-                <li class="breadcrumb-item text-gray-500">Package List</li>
+                <li class="breadcrumb-item text-gray-500">Frame List</li>
                 <!--end::Item-->
             </ul>
             <!--end::Breadcrumb-->

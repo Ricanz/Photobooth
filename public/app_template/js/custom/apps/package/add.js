@@ -1,7 +1,7 @@
 "use strict";
 var KTUsersAddUser = (function () {
-    const modalEl = document.getElementById("kt_modal_add_user"),
-        formEl = modalEl.querySelector("#kt_modal_add_user_form"),
+    const modalEl = document.getElementById("kt_modal_add_package"),
+        formEl = modalEl.querySelector("#kt_modal_add_package_form"),
         modal = new bootstrap.Modal(modalEl);
 
     return {
@@ -46,7 +46,7 @@ var KTUsersAddUser = (function () {
             });
 
             const submitBtn = modalEl.querySelector(
-                '[data-kt-users-modal-action="submit"]'
+                '[data-kt-pckages-modal-action="submit"]'
             );
             submitBtn.addEventListener("click", function (e) {
                 e.preventDefault();
@@ -130,7 +130,7 @@ var KTUsersAddUser = (function () {
             // Cancel & Close logic
             ["cancel", "close"].forEach((action) => {
                 modalEl
-                    .querySelector(`[data-kt-users-modal-action="${action}"]`)
+                    .querySelector(`[data-kt-pckages-modal-action="${action}"]`)
                     .addEventListener("click", function (e) {
                         e.preventDefault();
                         Swal.fire({

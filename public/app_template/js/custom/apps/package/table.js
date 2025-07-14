@@ -2,7 +2,7 @@
 
 var KTUsersList = (function () {
     var e, t, n, r;
-    const o = document.getElementById("kt_table_users");
+    const o = document.getElementById("kt_table_packages");
 
     const c = () => {
         o.querySelectorAll('[data-kt-users-table-filter="delete_row"]').forEach(
@@ -54,7 +54,7 @@ var KTUsersList = (function () {
                                         }).then(() => {
                                             const table =
                                                 $(
-                                                    "#kt_table_users"
+                                                    "#kt_table_packages"
                                                 ).DataTable();
                                             table.row($(row)).remove().draw();
                                         });
@@ -170,7 +170,7 @@ var KTUsersList = (function () {
 
             // Search
             const searchInput = document.querySelector(
-                '[data-kt-user-table-filter="search"]'
+                '[data-kt-package-table-filter="search"]'
             );
             if (searchInput) {
                 searchInput.addEventListener("keyup", function (t) {
