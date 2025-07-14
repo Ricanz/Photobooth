@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Frame extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'title',
+        'type',
+        'image'
+    ];
 }

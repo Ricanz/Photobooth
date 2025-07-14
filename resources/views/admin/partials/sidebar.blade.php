@@ -159,8 +159,8 @@
                         <span class="menu-title">Package</span>
                     </a>
                 </div>
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                    <span class="menu-link">
+                <div class="menu-item">
+                    <a class="menu-link active" href="{{ route('frame.index') }}">
                         <span class="menu-icon">
                             <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm007.svg-->
                             <span class="svg-icon svg-icon-2">
@@ -172,18 +172,7 @@
                             <!--end::Svg Icon-->
                         </span>
                         <span class="menu-title">Frame</span>
-                        <span class="menu-arrow"></span>
-                    </span>
-                    <div class="menu-sub menu-sub-accordion menu-active-bg">
-                        <div class="menu-item">
-                            <a class="menu-link" href="../../demo14/dist/pages/team.html">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Our Team</span>
-                            </a>
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <span class="menu-link">

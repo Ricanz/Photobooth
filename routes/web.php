@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FrameController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/packages/store', [PackageController::class, 'store'])->name('package.store');
     Route::post('/packages/{id}/update', [PackageController::class, 'update'])->name('package.update');
     Route::delete('/packages/{id}/destroy', [PackageController::class, 'destroy'])->name('package.destroy');
+
+    // Frame
+    Route::get('/frames', [FrameController::class, 'index'])->name('frame.index');
+    Route::get('/frames/list', [FrameController::class, 'list'])->name('frame.list');
+    Route::get('/frames/{id}/show', [FrameController::class, 'show'])->name('frame.show');
+    Route::post('/frames/store', [FrameController::class, 'store'])->name('frame.store');
+    Route::post('/frames/{id}/update', [FrameController::class, 'update'])->name('frame.update');
+    Route::delete('/frames/{id}/destroy', [FrameController::class, 'destroy'])->name('frame.destroy');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

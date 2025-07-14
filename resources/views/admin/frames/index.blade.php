@@ -47,8 +47,8 @@
                             </svg>
                         </span>
                         <!--end::Svg Icon-->
-                        <input type="text" data-kt-package-table-filter="search"
-                            class="form-control form-control-solid w-250px ps-14" placeholder="Search package" />
+                        <input type="text" data-kt-frame-table-filter="search"
+                            class="form-control form-control-solid w-250px ps-14" placeholder="Search frame" />
                     </div>
                     <!--end::Search-->
                 </div>
@@ -56,10 +56,10 @@
                 <!--begin::Card toolbar-->
                 <div class="card-toolbar">
                     <!--begin::Toolbar-->
-                    <div class="d-flex justify-content-end" data-kt-package-table-toolbar="base">
-                        <!--begin::Add package-->
+                    <div class="d-flex justify-content-end" data-kt-frame-table-toolbar="base">
+                        <!--begin::Add frame-->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#kt_modal_add_package">
+                            data-bs-target="#kt_modal_add_frame">
                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                             <span class="svg-icon svg-icon-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -70,21 +70,21 @@
                                         fill="black" />
                                 </svg>
                             </span>
-                            <!--end::Svg Icon-->Add Package</button>
-                        <!--end::Add package-->
+                            <!--end::Svg Icon-->Add Frame</button>
+                        <!--end::Add Frame-->
                     </div>
                     <!--end::Toolbar-->
                     <!--end::Modal - New Card-->
                     <!--begin::Modal - Add task-->
-                    <div class="modal fade" id="kt_modal_add_package" tabindex="-1" aria-hidden="true">
+                    <div class="modal fade" id="kt_modal_add_frame" tabindex="-1" aria-hidden="true">
                         <!--begin::Modal dialog-->
                         <div class="modal-dialog modal-dialog-centered mw-650px">
                             <!--begin::Modal content-->
                             <div class="modal-content">
                                 <!--begin::Modal header-->
-                                <div class="modal-header" id="kt_modal_add_package_header">
+                                <div class="modal-header" id="kt_modal_add_frame_header">
                                     <!--begin::Modal title-->
-                                    <h2 class="fw-bolder">Add Package</h2>
+                                    <h2 class="fw-bolder">Add Frame</h2>
                                     <!--end::Modal title-->
                                     <!--begin::Close-->
                                     <div class="btn btn-icon btn-sm btn-active-icon-primary"
@@ -107,7 +107,7 @@
                                 </div>
                                 <!--end::Modal header-->
                                 <!--begin::Modal body-->
-                                @include('admin.packages.modal.add')
+                                @include('admin.frames.modal.add')
                                 <!--end::Modal body-->
                             </div>
                             <!--end::Modal content-->
@@ -122,7 +122,7 @@
             <!--begin::Card body-->
             <div class="card-body py-4">
                 <!--begin::Table-->
-                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_packages">
+                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_frames">
                     <thead>
                         <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
                             <th>No</th>
@@ -146,6 +146,6 @@
 
 </x-app-layout>
 
-<script src="{{asset('app_template/js/custom/apps/package/table.js')}}"></script>
-<script src="{{asset('app_template/js/custom/apps/package/add.js')}}"></script>
+<script src="{{asset('app_template/js/custom/apps/frame/table.js')}}"></script>
+<script src="{{asset('app_template/js/custom/apps/frame/add.js')}}"></script>
 @push('scripts')

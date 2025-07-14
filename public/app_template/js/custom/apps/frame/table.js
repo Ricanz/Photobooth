@@ -2,7 +2,7 @@
 
 var KTUsersList = (function () {
     var e, t, n, r;
-    const o = document.getElementById("kt_table_packages");
+    const o = document.getElementById("kt_table_frames");
 
     const c = () => {
         o.querySelectorAll('[data-kt-users-table-filter="delete_row"]').forEach(
@@ -12,7 +12,7 @@ var KTUsersList = (function () {
                     const row = e.target.closest("tr");
                     const itemName = row.querySelectorAll("td")[1].innerText;
                     const rowId = row.getAttribute("data-id");
-
+                    
                     Swal.fire({
                         text:
                             "Are you sure you want to delete " + itemName + "?",
@@ -54,7 +54,7 @@ var KTUsersList = (function () {
                                         }).then(() => {
                                             const table =
                                                 $(
-                                                    "#kt_table_packages"
+                                                    "#kt_table_frames"
                                                 ).DataTable();
                                             table.row($(row)).remove().draw();
                                         });
@@ -96,6 +96,7 @@ var KTUsersList = (function () {
             }
         );
     };
+
 
     return {
         init: function () {
@@ -141,7 +142,7 @@ var KTUsersList = (function () {
                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
                                     data-kt-menu="true">
                                     <div class="menu-item px-3">
-                                        <a href="/packages/${row.id}/show" class="menu-link px-3">Edit</a>
+                                        <a href="/frames/${row.id}/show" class="menu-link px-3">Edit</a>
                                     </div>
                                     <div class="menu-item px-3">
                                         <a href="#" class="menu-link px-3"
@@ -169,7 +170,7 @@ var KTUsersList = (function () {
 
             // Search
             const searchInput = document.querySelector(
-                '[data-kt-package-table-filter="search"]'
+                '[data-kt-frame-table-filter="search"]'
             );
             if (searchInput) {
                 searchInput.addEventListener("keyup", function (t) {
