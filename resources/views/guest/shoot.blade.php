@@ -200,7 +200,7 @@
                 }
             }
 
-            greenBoxes.sort((a, b) => a.y - b.y); // Urutkan dari atas ke bawah
+            greenBoxes.sort((a, b) => a.y - b.y);
             PHOTO_SLOTS = greenBoxes;
         }
 
@@ -328,9 +328,6 @@
             ctx.quadraticCurveTo(x, y, x + tl, y);
             ctx.closePath();
         }
-
-
-
 
         async function startCamera() {
             try {
