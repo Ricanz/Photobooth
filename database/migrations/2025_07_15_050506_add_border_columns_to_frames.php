@@ -13,16 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('frames', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->enum('type', ['single', 'double'])->default('single');
-            $table->string('image')->nullable();
+        Schema::table('frames', function (Blueprint $table) {
             $table->string('border_top')->nullable();
             $table->string('border_bottom')->nullable();
             $table->string('border_right')->nullable();
             $table->string('border_left')->nullable();
-            $table->timestamps();
         });
     }
 
@@ -33,6 +28,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('frames');
+        Schema::table('nama_tabel', function (Blueprint $table) {
+            $table->dropColumn(['border_top', 'border_bottom', 'border_right', 'border_left']);
+        });
     }
 };

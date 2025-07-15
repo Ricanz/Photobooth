@@ -70,6 +70,50 @@
                 <!--end::Input-->
             </div>
             <!--end::Input group-->
+            <!--begin::Input group-->
+            <div class="fv-row mb-7">
+                <!--begin::Label-->
+                <label class="required fw-bold fs-6 mb-2">Border Top</label>
+                <!--end::Label-->
+                <!--begin::Input-->
+                <input type="text" name="border_top" class="form-control form-control-solid mb-3 mb-lg-0"
+                    placeholder="Border Top..." value="" />
+                <!--end::Input-->
+            </div>
+            <!--end::Input group-->
+            <!--begin::Input group-->
+            <div class="fv-row mb-7">
+                <!--begin::Label-->
+                <label class="required fw-bold fs-6 mb-2">Border Bottom</label>
+                <!--end::Label-->
+                <!--begin::Input-->
+                <input type="text" name="border_bottom" class="form-control form-control-solid mb-3 mb-lg-0"
+                    placeholder="Border Bottom..." value="" />
+                <!--end::Input-->
+            </div>
+            <!--end::Input group-->
+            <!--begin::Input group-->
+            <div class="fv-row mb-7">
+                <!--begin::Label-->
+                <label class="required fw-bold fs-6 mb-2">Border Right</label>
+                <!--end::Label-->
+                <!--begin::Input-->
+                <input type="text" name="border_right" class="form-control form-control-solid mb-3 mb-lg-0"
+                    placeholder="Border Right..." value="" />
+                <!--end::Input-->
+            </div>
+            <!--end::Input group-->
+            <!--begin::Input group-->
+            <div class="fv-row mb-7">
+                <!--begin::Label-->
+                <label class="required fw-bold fs-6 mb-2">Border Left</label>
+                <!--end::Label-->
+                <!--begin::Input-->
+                <input type="text" name="border_left" class="form-control form-control-solid mb-3 mb-lg-0"
+                    placeholder="border_left..." value="" />
+                <!--end::Input-->
+            </div>
+            <!--end::Input group-->
         </div>
         <!--end::Scroll-->
         <!--begin::Actions-->

@@ -47,7 +47,15 @@
 
     <script>
         const FRAME_URL = "{{ asset('storage/' . $data->image) }}";
-        console.log(FRAME_URL);
+        const BORDER_TOP = "{{ $data->border_top }}";
+        const BORDER_BOTTOM = "{{ $data->border_bottom }}";
+        const BORDER_RIGHT = "{{ $data->border_right }}";
+        const BORDER_LEFT = "{{ $data->border_left }}";
+
+        console.log(BORDER_TOP)
+        console.log(BORDER_BOTTOM)
+        console.log(BORDER_RIGHT)
+        console.log(BORDER_LEFT)
         let PHOTO_SLOTS = [];
 
         const video = document.getElementById('video');
@@ -57,6 +65,22 @@
         const countdownElem = document.getElementById('countdown');
         const downloadLink = document.getElementById('download-link');
         const resultCtx = resultCanvas.getContext('2d');
+        const MASK_COLORS = [{
+                r: 0,
+                g: 255,
+                b: 38
+            }, // Foto 1 - #00FF26
+            {
+                r: 0,
+                g: 102,
+                b: 255
+            }, // Foto 2 - #0066FF
+            {
+                r: 255,
+                g: 136,
+                b: 0
+            } // Foto 3 - #FF8800
+        ];
 
         let currentShot = 1;
         const frameImage = new Image();
@@ -71,9 +95,9 @@
         }
 
         function updateUI() {
-            if (currentShot <= PHOTO_SLOTS.length) {
+            if (currentShot <= MASK_COLORS.length) {
                 statusText.textContent = `Siap untuk foto ke-${currentShot}`;
-                captureBtn.textContent = `Ambil Foto ${currentShot}/${PHOTO_SLOTS.length}`;
+                captureBtn.textContent = `Ambil Foto ${currentShot}/${MASK_COLORS.length}`;
                 captureBtn.disabled = false;
             } else {
                 statusText.textContent = 'Sesi foto selesai!';
@@ -83,6 +107,7 @@
                 downloadLink.href = resultCanvas.toDataURL('image/png');
             }
         }
+
 
         function resetCanvas() {
             currentShot = 1;
@@ -113,8 +138,13 @@
             }
 
             function floodFill(x, y) {
-                const queue = [[x, y]];
-                let minX = x, maxX = x, minY = y, maxY = y;
+                const queue = [
+                    [x, y]
+                ];
+                let minX = x,
+                    maxX = x,
+                    minY = y,
+                    maxY = y;
 
                 while (queue.length) {
                     const [cx, cy] = queue.pop();
@@ -123,7 +153,9 @@
                     visited[idx] = 1;
 
                     const i = idx * 4;
-                    const r = data[i], g = data[i + 1], b = data[i + 2];
+                    const r = data[i],
+                        g = data[i + 1],
+                        b = data[i + 2];
                     if (!isGreen(r, g, b)) continue;
 
                     minX = Math.min(minX, cx);
@@ -132,8 +164,10 @@
                     maxY = Math.max(maxY, cy);
 
                     const neighbors = [
-                        [cx + 1, cy], [cx - 1, cy],
-                        [cx, cy + 1], [cx, cy - 1]
+                        [cx + 1, cy],
+                        [cx - 1, cy],
+                        [cx, cy + 1],
+                        [cx, cy - 1]
                     ];
                     for (const [nx, ny] of neighbors) {
                         if (nx >= 0 && ny >= 0 && nx < tempCanvas.width && ny < tempCanvas.height) {
@@ -157,7 +191,9 @@
                     const idx = getIndex(x, y);
                     if (visited[idx]) continue;
                     const i = idx * 4;
-                    const r = data[i], g = data[i + 1], b = data[i + 2];
+                    const r = data[i],
+                        g = data[i + 1],
+                        b = data[i + 2];
                     if (isGreen(r, g, b)) {
                         floodFill(x, y);
                     }
@@ -169,7 +205,7 @@
         }
 
         function takeAndPlacePicture() {
-            if (currentShot > PHOTO_SLOTS.length) {
+            if (currentShot > MASK_COLORS.length) {
                 resetCanvas();
                 return;
             }
@@ -188,15 +224,84 @@
                     clearInterval(timer);
                     countdownElem.textContent = "";
 
-                    const slot = PHOTO_SLOTS[currentShot - 1];
+                    const targetColor = MASK_COLORS[currentShot - 1];
+                    const frameImageData = resultCtx.getImageData(0, 0, resultCanvas.width, resultCanvas.height);
+                    const fData = frameImageData.data;
 
-                    resultCtx.save();
-                    resultCtx.beginPath();
-                    resultCtx.rect(slot.x, slot.y, slot.width, slot.height);
-                    resultCtx.clip();
-                    resultCtx.scale(-1, 1);
-                    resultCtx.drawImage(video, -(slot.x + slot.width), slot.y, slot.width, slot.height);
-                    resultCtx.restore();
+                    let minX = resultCanvas.width,
+                        minY = resultCanvas.height;
+                    let maxX = 0,
+                        maxY = 0;
+
+                    for (let y = 0; y < resultCanvas.height; y++) {
+                        for (let x = 0; x < resultCanvas.width; x++) {
+                            const i = (y * resultCanvas.width + x) * 4;
+                            const r = fData[i],
+                                g = fData[i + 1],
+                                b = fData[i + 2];
+
+                            if (
+                                Math.abs(r - targetColor.r) < 10 &&
+                                Math.abs(g - targetColor.g) < 10 &&
+                                Math.abs(b - targetColor.b) < 10
+                            ) {
+                                if (x < minX) minX = x;
+                                if (x > maxX) maxX = x;
+                                if (y < minY) minY = y;
+                                if (y > maxY) maxY = y;
+                            }
+                        }
+                    }
+
+                    const PADDING = 5;
+                    const maskX = Math.max(minX - PADDING, 0);
+                    const maskY = Math.max(minY - PADDING, 0);
+                    const maskWidth = Math.min((maxX - minX) + PADDING * 2, resultCanvas.width - maskX);
+                    const maskHeight = Math.min((maxY - minY) + PADDING * 2, resultCanvas.height - maskY);
+
+                    if (maskWidth > 0 && maskHeight > 0) {
+                        const camWidth = video.videoWidth;
+                        const camHeight = video.videoHeight;
+
+                        const maskRatio = maskWidth / maskHeight;
+                        const camRatio = camWidth / camHeight;
+
+                        let sx, sy, sWidth, sHeight;
+                        if (camRatio > maskRatio) {
+                            sHeight = camHeight;
+                            sWidth = camHeight * maskRatio;
+                            sx = (camWidth - sWidth) / 2;
+                            sy = 0;
+                        } else {
+                            sWidth = camWidth;
+                            sHeight = camWidth / maskRatio;
+                            sx = 0;
+                            sy = (camHeight - sHeight) / 2;
+                        }
+
+                        const cornerRadii = {
+                            tl: 0,
+                            tr: 40,
+                            br: 0,
+                            bl: 40
+                        };
+
+                        resultCtx.save();
+                        resultCtx.imageSmoothingEnabled = true;
+                        resultCtx.imageSmoothingQuality = "high";
+
+                        drawRoundedRectPath(resultCtx, maskX, maskY, maskWidth, maskHeight, cornerRadii);
+                        resultCtx.clip();
+
+                        resultCtx.scale(-1, 1);
+                        resultCtx.drawImage(
+                            video,
+                            sx, sy, sWidth, sHeight,
+                            -maskX - maskWidth, maskY,
+                            maskWidth, maskHeight
+                        );
+                        resultCtx.restore();
+                    }
 
                     currentShot++;
                     updateUI();
@@ -204,10 +309,36 @@
             }, 1000);
         }
 
+        function drawRoundedRectPath(ctx, x, y, width, height, radii) {
+            const {
+                tl,
+                tr,
+                br,
+                bl
+            } = radii;
+            ctx.beginPath();
+            ctx.moveTo(x + tl, y);
+            ctx.lineTo(x + width - tr, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + tr);
+            ctx.lineTo(x + width, y + height - br);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - br, y + height);
+            ctx.lineTo(x + bl, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - bl);
+            ctx.lineTo(x, y + tl);
+            ctx.quadraticCurveTo(x, y, x + tl, y);
+            ctx.closePath();
+        }
+
+
+
+
         async function startCamera() {
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({
-                    video: { width: 1280, height: 720 }
+                    video: {
+                        width: 1280,
+                        height: 720
+                    }
                 });
                 video.srcObject = stream;
                 video.onloadedmetadata = () => {
@@ -226,7 +357,9 @@
 
         frameImage.onerror = () => {
             statusText.textContent = 'Gagal memuat bingkai!';
-            alert('Gagal memuat gambar frame. Pastikan URL benar dan server Anda sudah berjalan serta mengizinkan CORS.');
+            alert(
+                'Gagal memuat gambar frame. Pastikan URL benar dan server Anda sudah berjalan serta mengizinkan CORS.'
+            );
         };
 
         captureBtn.addEventListener('click', takeAndPlacePicture);

@@ -56,6 +56,10 @@ class FrameController extends Controller
             'title' => 'required|string|max:255',
             'type' => 'required|in:single,double',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'border_top' => 'nullable|string',
+            'border_bottom' => 'nullable|string',
+            'border_right' => 'nullable|string',
+            'border_left' => 'nullable|string',
         ]);
 
         if ($request->hasFile('image')) {
@@ -99,6 +103,10 @@ class FrameController extends Controller
             'title' => 'required|string|max:255',
             'type' => 'required|in:single,double',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'border_top' => 'nullable|string',
+            'border_bottom' => 'nullable|string',
+            'border_right' => 'nullable|string',
+            'border_left' => 'nullable|string',
         ]);
 
 

@@ -11,6 +11,10 @@ class Frame extends Model
     protected $fillable = [
         'title',
         'type',
-        'image'
+        'image',
+        'border_top',
+        'border_bottom',
+        'border_right',
+        'border_left'
     ];
 }
