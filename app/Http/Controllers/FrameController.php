@@ -81,7 +81,7 @@ class FrameController extends Controller
     {
         $data = Frame::find($id);
 
-        return view('admin.frame.detail', [
+        return view('admin.frames.detail', [
             'data' => $data,
         ]);
     }

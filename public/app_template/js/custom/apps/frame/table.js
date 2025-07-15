@@ -28,7 +28,7 @@ var KTUsersList = (function () {
                         },
                     }).then(function (result) {
                         if (result.isConfirmed) {
-                            fetch(`/packages/${rowId}/destroy`, {
+                            fetch(`/frames/${rowId}/destroy`, {
                                 method: "DELETE",
                                 headers: {
                                     "X-CSRF-TOKEN": document
@@ -106,7 +106,7 @@ var KTUsersList = (function () {
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: "/packages/list",
+                    url: "/frames/list",
                     type: "GET",
                 },
                 columns: [
@@ -118,10 +118,17 @@ var KTUsersList = (function () {
                             return meta.row + meta.settings._iDisplayStart + 1;
                         },
                     },
+                    { 
+                        data: null,
+                        orderable: false,
+                        class: 'w-200px text-center',
+                        render: function (data, type, row) {
+                            return `
+                                <img class="w-auto h-200px" src="storage/${data.image}" alt="" />
+                            `;
+                        },
+                    },
                     { data: "title" },
-                    { data: "description" },
-                    { data: "price" },
-                    { data: "total_print" },
                     { data: "type" },
                     {
                         data: null,

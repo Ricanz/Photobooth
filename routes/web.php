@@ -20,6 +20,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/shoot', function () {
+    return view('guest.shoot');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/', [ProfileController::class, 'edit'])->name('dashboard');
 

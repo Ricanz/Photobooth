@@ -88,7 +88,7 @@
                                     <!--end::Modal title-->
                                     <!--begin::Close-->
                                     <div class="btn btn-icon btn-sm btn-active-icon-primary"
-                                        data-kt-pckages-modal-action="close">
+                                        data-kt-frames-modal-action="close">
                                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                                         <span class="svg-icon svg-icon-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -126,10 +126,8 @@
                     <thead>
                         <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
                             <th>No</th>
+                            <th>Image</th>
                             <th>Title</th>
-                            <th>Description</th>
-                            <th>Price</th>
-                            <th>Total Print</th>
                             <th>Type</th>
                             <th>Action</th>
                         </tr>

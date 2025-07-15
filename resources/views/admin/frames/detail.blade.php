@@ -4,7 +4,7 @@
         <!--begin::Page title-->
         <div class="page-title d-flex flex-column me-3">
             <!--begin::Title-->
-            <h1 class="d-flex text-dark fw-bolder my-1 fs-3">Package List</h1>
+            <h1 class="d-flex text-dark fw-bolder my-1 fs-3">Detail Frame</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-dot fw-bold text-gray-600 fs-7 my-1">
@@ -14,10 +14,10 @@
                 </li>
                 <!--end::Item-->
                 <!--begin::Item-->
-                <li class="breadcrumb-item text-gray-600">Package Management</li>
+                <li class="breadcrumb-item text-gray-600">Frame Management</li>
                 <!--end::Item-->
                 <!--begin::Item-->
-                <li class="breadcrumb-item text-gray-500">Detail Package</li>
+                <li class="breadcrumb-item text-gray-500">Detail Frame</li>
                 <!--end::Item-->
             </ul>
             <!--end::Breadcrumb-->
@@ -30,8 +30,8 @@
         <div class="card">
             <div class="body  mx-5 mx-xl-15 my-7">
                 <!--begin::Form-->
-                <form id="kt_edit_package_form" class="form" enctype="multipart/form-data" method="POST"
-                    data-action="{{ route('package.update', $data->id) }}">
+                <form id="kt_edit_frame_form" class="form" enctype="multipart/form-data" method="POST"
+                    data-action="{{ route('frame.update', $data->id) }}">
                     <!--begin::Input group-->
                     <div class="fv-row mb-7">
                         <!--begin::Label-->
@@ -40,14 +40,14 @@
                         <!--begin::Image input-->
                         <div class="image-input image-input-outline" data-kt-image-input="true"
                             style="background-image: url('{{ asset('storage/' . $data->image) }}')">
-                            <!--begin::Preview existing avatar-->
+                            <!--begin::Preview existing image-->
                             <div class="image-input-wrapper w-125px h-125px"
                                 style="background-image: url({{ asset('storage/' . $data->image) }});">
                             </div>
-                            <!--end::Preview existing avatar-->
+                            <!--end::Preview existing image-->
                             <!--begin::Label-->
                             <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
+                                data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change image">
                                 <i class="bi bi-pencil-fill fs-7"></i>
                                 <!--begin::Inputs-->
                                 <input type="file" name="image" accept=".png, .jpg, .jpeg" />
@@ -57,13 +57,13 @@
                             <!--end::Label-->
                             <!--begin::Cancel-->
                             <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
+                                data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel image">
                                 <i class="bi bi-x fs-2"></i>
                             </span>
                             <!--end::Cancel-->
                             <!--begin::Remove-->
                             <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
+                                data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove image">
                                 <i class="bi bi-x fs-2"></i>
                             </span>
                             <!--end::Remove-->
@@ -82,39 +82,6 @@
                         <!--begin::Input-->
                         <input type="text" name="title" class="form-control form-control-solid mb-3 mb-lg-0"
                             placeholder="Title..." value="{{ $data->title }}" />
-                        <!--end::Input-->
-                    </div>
-                    <!--end::Input group-->
-                    <!--begin::Input group-->
-                    <div class="fv-row mb-7">
-                        <!--begin::Label-->
-                        <label class="required fw-bold fs-6 mb-2">Description</label>
-                        <!--end::Label-->
-                        <!--begin::Input-->
-                        <input type="text" name="description" class="form-control form-control-solid mb-3 mb-lg-0"
-                            placeholder="Description..." value="{{ $data->description }}" />
-                        <!--end::Input-->
-                    </div>
-                    <!--end::Input group-->
-                    <!--begin::Input group-->
-                    <div class="fv-row mb-7">
-                        <!--begin::Label-->
-                        <label class="required fw-bold fs-6 mb-2">Price</label>
-                        <!--end::Label-->
-                        <!--begin::Input-->
-                        <input type="text" name="price" class="form-control form-control-solid mb-3 mb-lg-0"
-                            placeholder="Price..." value="{{ $data->price }}" />
-                        <!--end::Input-->
-                    </div>
-                    <!--end::Input group-->
-                    <!--begin::Input group-->
-                    <div class="fv-row mb-7">
-                        <!--begin::Label-->
-                        <label class="required fw-bold fs-6 mb-2">Total Print</label>
-                        <!--end::Label-->
-                        <!--begin::Input-->
-                        <input type="text" name="total_print" class="form-control form-control-solid mb-3 mb-lg-0"
-                            placeholder="Total Print..." value="{{ $data->total_print }}" />
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->
@@ -149,5 +116,5 @@
 
 </x-app-layout>
 
-<script src="{{ asset('app_template/js/custom/apps/package/edit.js') }}"></script>
+<script src="{{ asset('app_template/js/custom/apps/frame/edit.js') }}"></script>
 @push('scripts')

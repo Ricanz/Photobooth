@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             confirmButton: "btn btn-primary",
                         },
                     }).then(() => {
-                        window.location.href = "/packages"; // or redirect back
+                        window.location.href = "/frames";
                     });
                 } else {
                     Swal.fire({

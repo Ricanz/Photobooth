@@ -13,22 +13,6 @@ var KTUsersAddUser = (function () {
                             notEmpty: { message: "Title is required" },
                         },
                     },
-                    description: {
-                        validators: {
-                            notEmpty: { message: "Description is required" },
-                        },
-                    },
-                    price: {
-                        validators: {
-                            notEmpty: { message: "Price is required" },
-                        },
-                    },
-                    total_print: {
-                        validators: {
-                            notEmpty: { message: "Total print is required" },
-                            integer: { message: "Must be a number" },
-                        },
-                    },
                     type: {
                         validators: {
                             notEmpty: { message: "Type is required" },
@@ -46,7 +30,7 @@ var KTUsersAddUser = (function () {
             });
 
             const submitBtn = modalEl.querySelector(
-                '[data-kt-pckages-modal-action="submit"]'
+                '[data-kt-frames-modal-action="submit"]'
             );
             submitBtn.addEventListener("click", function (e) {
                 e.preventDefault();
@@ -57,7 +41,7 @@ var KTUsersAddUser = (function () {
 
                         const formData = new FormData(formEl);
 
-                        fetch("/packages/store", {
+                        fetch("/frames/store", {
                             method: "POST",
                             headers: {
                                 "X-CSRF-TOKEN": document
@@ -130,7 +114,7 @@ var KTUsersAddUser = (function () {
             // Cancel & Close logic
             ["cancel", "close"].forEach((action) => {
                 modalEl
-                    .querySelector(`[data-kt-pckages-modal-action="${action}"]`)
+                    .querySelector(`[data-kt-frames-modal-action="${action}"]`)
                     .addEventListener("click", function (e) {
                         e.preventDefault();
                         Swal.fire({
