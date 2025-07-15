@@ -46,7 +46,8 @@
     </div>
 
     <script>
-        const FRAME_URL = 'http://127.0.0.1:8000/storage/Frames/trj1sYlhFvSICAifgxMmk6WeEUjYxgorY0Le2Cyj.png';
+        const FRAME_URL = "{{ asset('storage/' . $data->image) }}";
+        console.log(FRAME_URL);
         let PHOTO_SLOTS = [];
 
         const video = document.getElementById('video');
